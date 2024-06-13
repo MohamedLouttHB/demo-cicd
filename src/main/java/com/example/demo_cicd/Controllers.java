@@ -13,7 +13,7 @@ public class Controllers {
 
     @GetMapping()
     public ResponseEntity<String> welcome(){
-        return ResponseEntity.ok("Welcome - test deploy-pull&run-locally-dockerImage");
+        return ResponseEntity.ok("Welcome : test deploy-pull&run-locally-dockerImage- Pipeline");
     }
 
 }

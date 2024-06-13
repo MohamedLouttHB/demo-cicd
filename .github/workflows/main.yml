@@ -69,8 +69,14 @@ jobs:
       - name: Log in to Docker Hub
         run: echo "${{ secrets.DOCKER_HUB_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_HUB_USERNAME }}" --password-stdin
 
+      - name: List Docker images
+        run: docker images
+
       - name: Pull Docker image
         run: docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/tstloc:latest
 
       - name: Run Docker container
         run: docker run -d -p 8081:8081 ${{ secrets.DOCKER_HUB_USERNAME }}/tstloc:latest
+
+      - name: List running Docker containers
+        run: docker ps -a
