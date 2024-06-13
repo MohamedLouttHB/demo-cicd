@@ -3,7 +3,7 @@ name: Project CI/CD Flow
 on:
   push:
     branches:
-      - testgit
+      - main
 
 jobs:
   build-test:
@@ -55,11 +55,11 @@ jobs:
 
       # Build the Docker image
       - name: Build Docker image
-        run: docker build -t ${{ secrets.DOCKER_HUB_USERNAME }}/secpipe:latest .
+        run: docker build -t ${{ secrets.DOCKER_HUB_USERNAME }}/tstloc:latest .
 
       # Push the Docker image to Docker Hub
       - name: Push Docker image
-        run: docker push ${{ secrets.DOCKER_HUB_USERNAME }}/secpipe:latest
+        run: docker push ${{ secrets.DOCKER_HUB_USERNAME }}/tstloc:latest
 
   run-locally:
     runs-on: ubuntu-latest
@@ -67,7 +67,7 @@ jobs:
 
     steps:
       - name: Pull Docker image
-        run: docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/secpipe:latest
+        run: docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/tstloc:latest
 
       - name: Run Docker container
-        run: docker run -d -p 8080:8080 ${{ secrets.DOCKER_HUB_USERNAME }}/secpipe:latest
+        run: docker run -d -p 8080:8080 ${{ secrets.DOCKER_HUB_USERNAME }}/tstloc:latest
